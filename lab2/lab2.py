@@ -76,6 +76,15 @@ fn_linear = np.sum((predictions_linear == -1) & (b_validate == 1))
 fp_quadratic = np.sum((predictions_quadratic == 1) & (b_validate == -1))
 fn_quadratic = np.sum((predictions_quadratic == -1) & (b_validate == 1))
 
+positive = np.sum(b_validate == 1)
+negative = np.sum(b_validate == -1)
+print("positive", positive, "negative", negative)
+
+linear_accuracy = ((positive - fn_linear) + (negative - fp_linear))/ (positive + negative)
+quadratic_accuracy = ((positive - fn_quadratic) + (negative - fp_quadratic))/ (positive + negative)
+print("linear accuracy:", linear_accuracy)
+print("quadratic accuracy:", quadratic_accuracy)
+
 # Wyniki
 print("Liniowa FP:", fp_linear, "FN:", fn_linear)
 print("Kwadratowa FP:", fp_quadratic, "FN:", fn_quadratic)
