@@ -157,6 +157,19 @@ plt.legend()
 plt.grid(True)
 plt.show()
 
+
+plt.figure(figsize=(10, 6))
+plt.plot(years, population, 'ro', label='Węzły interpolacji')
+plt.plot(all_years, interpolated_population, label='Wielomian interpolacyjny', )
+plt.plot(all_years, interpolated_population_lagrange, label='Wielomian interpolacyjny Lagrange',linestyle = 'dashed')
+plt.plot(all_years, interpolated_population_newton, label='Wielomian interpolacyjny Newtona',linestyle = 'dotted')
+plt.xlabel('Rok')
+plt.ylabel('Populacja')
+plt.title('Interpolacja populacji Stanów Zjednoczonych')
+plt.legend()
+plt.grid(True)
+plt.show()
+
 # Porównanie wyznaczonych współczynników
 print("Porównanie współczynników interpolacyjnych dla danych zaokrąglonych:\n")
 print("Oryginalne współczynniki: ", coefficients,"\n")
@@ -165,5 +178,16 @@ abs_coefficients_difference = np.abs(coefficients_rounded - coefficients)
 print("Różnica współczynników: ", abs_coefficients_difference)
 
 # Porównanie wartości wielomianów interpolacyjnych dla Lagrange'a i Newtona
-polynomial_difference = np.abs(interpolated_population_lagrange - interpolated_population_newton)
-print(polynomial_difference)
+polynomial_difference_newton = np.abs(interpolated_population - interpolated_population_newton)
+polynomial_difference_lagrange = np.abs(interpolated_population - interpolated_population_lagrange)
+
+
+plt.figure(figsize=(10, 6))
+plt.plot(all_years, polynomial_difference_newton, label='Wielomian interpolacyjny Newtona')
+plt.plot(all_years, polynomial_difference_lagrange, label='Wielomian interpolacyjny Lagrange')
+plt.xlabel('Rok')
+plt.ylabel('Róznica')
+plt.title('Błąd bezwzględny wielomianów interpolacyjnych dla Lagrangea i Newtona')
+plt.legend()
+plt.grid(True)
+plt.show()
