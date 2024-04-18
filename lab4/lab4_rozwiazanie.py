@@ -28,7 +28,7 @@ def equidistant_nodes(a, b, n):
 
 def chebyshev_nodes(a, b, n):
 
-    theta = np.pi * (2*np.arange(n) + 1) / (2*(n+1))
+    theta = np.pi * (2*np.arange(n) + 1) / (2*(n))
     x = np.cos(theta)
     x_transformed = a + (b - a) * (x + 1) / 2
     
